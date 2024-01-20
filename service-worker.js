@@ -7,15 +7,15 @@ self.addEventListener('install', (event) =>
   caches.open(cacheName).then((cache) =>
   {
     return cache.addAll([
-      '/E/',
-      '/E/manifest.json',
-      '/E/style.css',
-      '/E/script.js',
-      '/E/favicon.png',
-      '/E/font.woff2',
-      '/E/sw.js',
-      '/E/folder/PV/PV1.jpg', '/E/folder/PV/PV2.jpg', '/E/folder/PV/PV3.jpg', '/E/folder/PV/PV4.jpg'
-      '/E/folder/EMGV/EMGV1.jpg', '/E/folder/EMGV/EMGV2.jpg', '/E/folder/EMGV/EMGV3.jpg', '/E/folder/EMGV/EMGV4.jpg'
+      '/emat/',
+      '/emat/manifest.json',
+      '/emat/style.css',
+      '/emat/script.js',
+      '/emat/favicon.png',
+      '/emat/font.woff2',
+      '/emat/sw.js',
+      '/emat/folder/PV/PV1.jpg', '/emat/folder/PV/PV2.jpg', '/emat/folder/PV/PV3.jpg', '/emat/folder/PV/PV4.jpg',
+      '/emat/folder/EMGV/EMGV1.jpg', '/emat/folder/EMGV/EMGV2.jpg', '/emat/folder/EMGV/EMGV3.jpg', '/emat/folder/EMGV/EMGV4.jpg'
       //DALŠÍ
       ]);
     })
