@@ -2,14 +2,14 @@
   "name": "E - Maturita",
   "short_name": "E",
   "description": "Offline E",
-  "start_url": "/E/",
+  "start_url": "/emat/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons":
   [
     {
-      "src": "/E/favicon.png",
+      "src": "/emat/favicon.png",
       "sizes": "1200x1255",
       "type": "image/png"
     }
