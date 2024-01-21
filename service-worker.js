@@ -2,7 +2,6 @@ const cacheName = 'E-cache-v2';
 
 self.addEventListener('install', (event) =>
 {
-  console.log('Service Worker Installed');
   event.waitUntil(
   caches.open(cacheName).then((cache) =>
   {
