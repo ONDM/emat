@@ -15,7 +15,7 @@ body
 
 @font-face
 {
-  font-family: 'font1';
+  font-family: 'font';
   src: url('/emat/font.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -55,7 +55,7 @@ body
 
 .buttons-back, .buttons-container
 {
-  font-family: 'font1', Arial, sans-serif;
+  font-family: 'font', Arial, sans-serif;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
@@ -81,7 +81,7 @@ img
 
 button#unlock-button
 {
-  font-family: 'font1', Arial, sans-serif;
+  font-family: 'font', Arial, sans-serif;
   width: 120px;
   height: 43px;
   font-size: 18px;
@@ -127,7 +127,7 @@ button#unlock-button:hover
 
 button
 {
-  font-family: 'font1', Arial, sans-serif;
+  font-family: 'font', Arial, sans-serif;
   position: relative;
   padding: 10px;
   font-size: 16px;
