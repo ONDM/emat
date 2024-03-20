@@ -45,9 +45,13 @@ document.addEventListener('DOMContentLoaded', function ()
           {
             contentDiv.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
           }
-          else if (buttonNumber === 2)
+          if (buttonNumber === 2)
           {
             contentDiv.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
+          }
+          if (buttonNumber === 3)
+          {
+            contentDiv.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
           }
         }
       }
@@ -162,9 +166,13 @@ function showContent(buttonNumber)
       {
         contentDiv.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
       }
-      else if (buttonNumber === 2)
+      if (buttonNumber === 2)
       {
         contentDiv.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
+      }
+      if (buttonNumber === 3)
+      {
+        contentDiv.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
       }
     }
     // ZOBRAZENÍ OBSAHU DLE ID
@@ -242,14 +250,9 @@ function goBack()
       var buttonLabel;
       switch (i)
       {
-        case 1:
-        buttonLabel = "Parametry vedení";
-        break;
-
-        case 2:
-        buttonLabel = "Emg. vlny + antény";
-        break;
-
+        case 1: buttonLabel = "Parametry vedení"; break;
+        case 2: buttonLabel = "Emg. vlny + antény"; break;
+        case 3: buttonLabel = "Superhet + fáz. závěs"; break;
         default:
         buttonLabel = "E " + i;
       }
