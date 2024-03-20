@@ -98,8 +98,8 @@ body
 {
   font-family: 'font', Arial, sans-serif;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
   height: 100px;
   width: 100%;
   gap: 10px;
