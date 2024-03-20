@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function ()
         document.querySelector('.buttons-container').classList.add('hidden');
         // ZOBRAZENÍ OBSAHU
         content.classList.remove('hidden');
-        // ZOBRAZENÍ TLAČÍTKA ZPĚT OD 1 DO 20
-        if (buttonNumber >= 1 && buttonNumber <= 2)
+        // ZOBRAZENÍ TLAČÍTKA ZPĚT OD 1 DO X
+        if (buttonNumber >= 1 && buttonNumber <= 3)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
         {
           content.innerHTML += '<button onclick="goBack()"><span class="button-number">B</span>Zpět</button>';
           // PŘIDÁNÍ OBRÁZKŮ PRO OBSAH - DRUHÝ OBSAH
@@ -157,8 +157,8 @@ function showContent(buttonNumber)
   {
     buttonsContainer.classList.add('hidden');
   }
-    // Zobrazit tlačítko Zpět pro obsah od Hamlet až x
-    if (buttonNumber >= 1 && buttonNumber <= 2)
+    // Zobrazit tlačítko Zpět pro obsah od parametry vedení až x
+    if (buttonNumber >= 1 && buttonNumber <= 3)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
     {
       contentDiv.innerHTML = '<button id="back-button" onclick="goBack()">⋘</button>';
       // PŘIDÁNÍ OBRÁZKŮ PRO KNIHY - PRVNÍ OBSAH
@@ -245,7 +245,7 @@ function goBack()
   function generateButtons()
   {
     var buttonsHTML = '<div class="buttons-back">';
-    for (var i = 1; i <= 2; i++)
+    for (var i = 1; i <= 3; i++)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
     {
       var buttonLabel;
       switch (i)
