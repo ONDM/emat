@@ -13,6 +13,7 @@ self.addEventListener('install', (event) =>
       '/emat/favicon.png',
       '/emat/font.woff2',
       '/emat/sw.js',
+      '/emat/logo.png',
       '/emat/folder/PV/PV1.jpg', '/emat/folder/PV/PV2.jpg', '/emat/folder/PV/PV3.jpg', '/emat/folder/PV/PV4.jpg',
       '/emat/folder/EMGV/EMGV1.jpg', '/emat/folder/EMGV/EMGV2.jpg', '/emat/folder/EMGV/EMGV3.jpg', '/emat/folder/EMGV/EMGV4.jpg',
       '/emat/folder/FSFZ/FSFZ1.jpg',
