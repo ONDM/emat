@@ -54,10 +54,33 @@ body
   }
 }
 
+#time-display
+{
+  font-family: 'font1', Arial, sans-serif;
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 5px 5px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#time-image
+{
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  opacity: 0.1;
+}
+
 @font-face
 {
   font-family: 'font';
-  src: url('font.woff2') format('woff2');
+  src: url('/emat/font.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
