@@ -262,6 +262,42 @@ function goBack()
     return buttonsHTML;
 }
 
+document.addEventListener("DOMContentLoaded", function ()
+{
+  function toggleTimeDisplay()
+  {
+    var timeDisplay = document.getElementById("time-display");
+    if (timeDisplay.style.display === "none")
+    {
+      timeDisplay.style.display = "block";
+    }
+    else
+    {
+      timeDisplay.style.display = "none";
+    }
+  }
+
+  document.getElementById("time-image").addEventListener("click", toggleTimeDisplay);
+  function updateTime()
+  {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
+
+    var timeDisplay = document.getElementById("time-display");
+    timeDisplay.textContent = hours + ":" + minutes + ":" + seconds;
+  }
+
+  setInterval(updateTime, 1000);
+
+  updateTime();
+});
+
 
 // PADÁNÍ VLOČEK
 document.addEventListener("DOMContentLoaded", function ()
