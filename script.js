@@ -71,18 +71,22 @@ function checkscript()
 {
   var scriptInput = document.getElementById('script');
   var enteredScript = scriptInput.value;
-  var ipAddress = '';
   var failedAttempts = JSON.parse(localStorage.getItem(failedAttemptsKey)) || {};
+  var ipAddress = '';
+
   if (!failedAttempts[ipAddress])
   {
     failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
   }
+
   var currentTime = Date.now();
   var timeElapsed = currentTime - failedAttempts[ipAddress].lastAttempt;
+
   if (timeElapsed > blockDuration && failedAttempts[ipAddress].count >= 3)
   {
     failedAttempts[ipAddress] = { count: 0, lastAttempt: currentTime };
   }
+
   if (failedAttempts[ipAddress].count >= 3)
   {
     document.getElementById('incorrect-script').innerText = 'Příliš mnoho neúspěšných pokusů. Zkus to později.';
@@ -90,6 +94,7 @@ function checkscript()
     scriptInput.disabled = true;
     document.getElementById('unlock-button').disabled = true;
     localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
+
     setTimeout(function ()
     {
       scriptInput.disabled = false;
@@ -98,11 +103,29 @@ function checkscript()
       document.getElementById('unlock-button').disabled = false;
       localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
     }, blockDuration);
+
     return;
   }
-  var hashedScript = CryptoJS.SHA256(enteredScript).toString(CryptoJS.enc.Hex);
-  var correctScriptHash = '54efe99e6d407075bbdfe21c14cad9b0103e706487e1e24e7bc2ed8396a70a3d';
-  if (hashedScript === correctScriptHash)
+
+  var storedPassword = ''; // ULOŽENÉ HESLO PRO PŘÍPAD NEFUNKČNOSTI HESLA ZE SKRYTÉHO JSON SOUBORU
+  try
+  {
+    // HESLO ZE SKRYTÉHO JSON SOUBORU
+    var request = new XMLHttpRequest();
+    request.open('GET', 'pass.json', false);
+    request.send(null);
+    if (request.status === 200)
+    {
+      var data = JSON.parse(request.responseText);
+      storedPassword = data.password;
+    }
+  }
+  catch (error)
+  {
+    console.error('Chyba při načítání hesla ze skrytého souboru:', error);
+  }
+
+  if (enteredScript === storedPassword)
   {
     document.getElementById('script-form').style.display = 'none';
     document.getElementById('content').style.display = 'flex';
@@ -125,11 +148,13 @@ function checkscript()
       var text = remainingAttempts === 1 ? 'Zbývá 1 ' + attemptsText : 'Zbývají ' + remainingAttempts + ' ' + attemptsText;
       document.getElementById('incorrect-script').innerText = 'Neplatné heslo. ' + text + '.';
     }
+
     document.getElementById('incorrect-script').classList.remove('hidden');
     failedAttempts[ipAddress].count++;
     failedAttempts[ipAddress].lastAttempt = Date.now();
     scriptInput.value = '';
   }
+
   localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
 }
 
