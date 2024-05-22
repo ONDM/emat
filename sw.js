@@ -1,11 +1,18 @@
-const cacheName = 'offline-link';
-const offlinePage = 'offline.html';
+const cacheName = 'offline-emat';
+const offlinePage = 'offlineemat.html';
 const assets = [
-  '/emat/',
-  '/emat/style.css',
-  '/emat/script.js',
-  '/emat/favicon.png',
-  '/emat/font.woff2',
+      '/emat/',
+      '/emat/manifest.json',
+      '/emat/style.css',
+      '/emat/script.js',
+      '/emat/favicon.png',
+      '/emat/font.woff2',
+      '/emat/sw.js',
+      '/emat/logo.png',
+      '/emat/pass.json',
+      '/emat/folder/PV/PV1.jpg', '/emat/folder/PV/PV2.jpg', '/emat/folder/PV/PV3.jpg', '/emat/folder/PV/PV4.jpg',
+      '/emat/folder/EMGV/EMGV1.jpg', '/emat/folder/EMGV/EMGV2.jpg', '/emat/folder/EMGV/EMGV3.jpg', '/emat/folder/EMGV/EMGV4.jpg',
+      '/emat/folder/FSFZ/FSFZ1.jpg',
 ];
 
 self.addEventListener('install', event =>
