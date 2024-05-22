@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', function ()
   document.getElementById('script-form').classList.remove('hidden');
 
   // ENTER CONF
-  document.getElementById('script').addEventListener('keyup', function(event)
-  {
+  document.getElementById('script').addEventListener('keyup', function(event) {
     if (event.key === 'Enter')
     {
       checkscript();
@@ -25,8 +24,7 @@ document.addEventListener('DOMContentLoaded', function ()
       // ID OBSAH
       var content = document.getElementById(contentId);
       // SKRYTÍ OBSAHU
-      document.querySelectorAll('.content').forEach(function(item)
-      {
+      document.querySelectorAll('.content').forEach(function(item) {
         item.classList.add('hidden');
       });
       // ZOBRAZENÍ OBSAHU
@@ -37,21 +35,20 @@ document.addEventListener('DOMContentLoaded', function ()
         // ZOBRAZENÍ OBSAHU
         content.classList.remove('hidden');
         // ZOBRAZENÍ TLAČÍTKA ZPĚT OD 1 DO X
-        if (buttonNumber >= 1 && buttonNumber <= 3)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
-        {
+        if (buttonNumber >= 1 && buttonNumber <= 3) { // UPRAVIT PO PŘIDÁNÍ DALŠÍHO ZÁPISU!!
           content.innerHTML += '<button onclick="goBack()"><span class="button-number">B</span>Zpět</button>';
           // PŘIDÁNÍ OBRÁZKŮ PRO OBSAH - DRUHÝ OBSAH
           if (buttonNumber === 1)
           {
-            contentDiv.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
+            content.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
           }
           if (buttonNumber === 2)
           {
-            contentDiv.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
+            content.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
           }
           if (buttonNumber === 3)
           {
-            contentDiv.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
+            content.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
           }
         }
       }
@@ -67,10 +64,18 @@ document.addEventListener('DOMContentLoaded', function ()
 
 var failedAttemptsKey = 'failedAttempts';
 var blockDuration = 600000;
+var storedPasswordHash = '605168aceb73437a516f06a3a72090658284a6ede290dfa73a9dbff9ef34c72b';
+
+function hashPassword(password)
+{
+  return CryptoJS.SHA256(password).toString();
+}
+
 function checkscript()
 {
   var scriptInput = document.getElementById('script');
   var enteredScript = scriptInput.value;
+  var enteredScriptHash = hashPassword(enteredScript);
   var failedAttempts = JSON.parse(localStorage.getItem(failedAttemptsKey)) || {};
   var ipAddress = '';
 
@@ -107,25 +112,7 @@ function checkscript()
     return;
   }
 
-  var storedPassword = ''; // ULOŽENÉ HESLO PRO PŘÍPAD NEFUNKČNOSTI HESLA ZE SKRYTÉHO JSON SOUBORU
-  try
-  {
-    // HESLO ZE SKRYTÉHO JSON SOUBORU
-    var request = new XMLHttpRequest();
-    request.open('GET', 'pass.json', false);
-    request.send(null);
-    if (request.status === 200)
-    {
-      var data = JSON.parse(request.responseText);
-      storedPassword = data.password;
-    }
-  }
-  catch (error)
-  {
-    console.error('Chyba při načítání hesla ze skrytého souboru:', error);
-  }
-
-  if (enteredScript === storedPassword)
+  if (enteredScriptHash === storedPasswordHash)
   {
     document.getElementById('script-form').style.display = 'none';
     document.getElementById('content').style.display = 'flex';
@@ -175,7 +162,7 @@ function showContent(buttonNumber)
     item.classList.add('hidden');
   });
   // ZOBRAZENÍ OBSAHU
-  contentDiv.classList.remove('hidden');
+  contentDiv.classList.remove('hidden'); //////////////////////////////////////////////////////////////////////
   // SKRYTÍ VŠECH TLAČÍTEK
   var buttonsContainer = document.querySelector('.buttons-container');
   if (buttonsContainer)
