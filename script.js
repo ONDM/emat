@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function ()
   document.getElementById('script-form').classList.remove('hidden');
 
   // ENTER CONF
-  document.getElementById('script').addEventListener('keyup', function(event) {
+  document.getElementById('script').addEventListener('keyup', function(event)
+  {
     if (event.key === 'Enter')
     {
       checkscript();
@@ -160,9 +161,9 @@ function showContent(buttonNumber)
   document.querySelectorAll('.content').forEach(function(item)
   {
     item.classList.add('hidden');
-  });
+  });                       //////////////////////////////////////////////////////////////////////
   // ZOBRAZENÍ OBSAHU
-  contentDiv.classList.remove('hidden'); //////////////////////////////////////////////////////////////////////
+  contentDiv.classList.remove('hidden');
   // SKRYTÍ VŠECH TLAČÍTEK
   var buttonsContainer = document.querySelector('.buttons-container');
   if (buttonsContainer)
