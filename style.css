@@ -1,7 +1,7 @@
 /* STYLY PRO PC A MOBIL */
 body
 {
-  font-family: 'font1', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -56,7 +56,7 @@ body
 
 #time-display
 {
-  font-family: 'font1', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   position: fixed;
   top: 50px;
   left: 10px;
@@ -75,14 +75,6 @@ body
   width: 80px;
   height: 80px;
   opacity: 0.1;
-}
-
-@font-face
-{
-  font-family: 'font';
-  src: url('/emat/font.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
 }
 
 #content
@@ -112,7 +104,7 @@ body
 
 .buttons-back, .buttons-container
 {
-  font-family: 'font', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, auto);
@@ -138,7 +130,7 @@ img
 
 button#unlock-button
 {
-  font-family: 'font', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   width: 120px;
   height: 43px;
   font-size: 18px;
@@ -184,7 +176,7 @@ button#unlock-button:hover
 
 button
 {
-  font-family: 'font', Arial, sans-serif;
+  font-family: Arial, sans-serif;
   position: relative;
   padding: 10px;
   font-size: 16px;
