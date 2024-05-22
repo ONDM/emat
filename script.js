@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function ()
 // SW
 if ('serviceWorker' in navigator)
 {
-  navigator.serviceWorker.register('sw.js').then(() =>
+  navigator.serviceWorker.register('/emat/sw.js').then(() =>
     {
       console.log('Service Worker úspěšně spuštěn. Offline režim aktivován.');
     }).catch(error =>
