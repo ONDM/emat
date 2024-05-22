@@ -1,187 +1,158 @@
-document.addEventListener('DOMContentLoaded', function ()
-{
-  document.getElementById('script').focus();
-  document.getElementById('content').classList.add('hidden');
-  document.getElementById('script-form').classList.remove('hidden');
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('script').focus();
+    document.getElementById('content').classList.add('hidden');
+    document.getElementById('script-form').classList.remove('hidden');
 
-  // ENTER CONF
-  document.getElementById('script').addEventListener('keyup', function(event)
-  {
-    if (event.key === 'Enter')
-    {
-      checkscript();
-    }
-  });
-
-  var buttons = document.querySelectorAll('.buttons-container button');
-  buttons.forEach(function(button)
-  {
-    button.addEventListener('click', function()
-    {
-      // ČÍSLO TLAČÍTKA
-      var buttonNumber = button.querySelector('.button-number').innerText;
-      // ID PRO TLAČÍTKO
-      var contentId = 'content-' + buttonNumber;
-      // ID OBSAH
-      var content = document.getElementById(contentId);
-      // SKRYTÍ OBSAHU
-      document.querySelectorAll('.content').forEach(function(item)
-      {
-        item.classList.add('hidden');
-      });
-      // ZOBRAZENÍ OBSAHU
-      if (content)
-      {
-        // SKRYTÍ TLAČÍTEK
-        document.querySelector('.buttons-container').classList.add('hidden');
-        // ZOBRAZENÍ OBSAHU
-        content.classList.remove('hidden');
-        // ZOBRAZENÍ TLAČÍTKA ZPĚT OD 1 DO X
-        if (buttonNumber >= 1 && buttonNumber <= 3)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
-        {
-          content.innerHTML += '<button onclick="goBack()"><span class="button-number">B</span>Zpět</button>';
-          // PŘIDÁNÍ OBRÁZKŮ PRO OBSAH - DRUHÝ OBSAH
-          if (buttonNumber === 1)
-          {
-            contentDiv.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
-          }
-          if (buttonNumber === 2)
-          {
-            contentDiv.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
-          }
-          if (buttonNumber === 3)
-          {
-            contentDiv.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
-          }
+    // ENTER CONF
+    document.getElementById('script').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            checkscript();
         }
-      }
     });
-  });
 
-  // SKRYTÍ OBSAHU PO NAČTENÍ STRÁNKY
-  document.querySelectorAll('.content').forEach(function(item)
-  {
-    item.classList.add('hidden');
-  });
+    var buttons = document.querySelectorAll('.buttons-container button');
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // ČÍSLO TLAČÍTKA
+            var buttonNumber = button.querySelector('.button-number').innerText;
+            // ID PRO TLAČÍTKO
+            var contentId = 'content-' + buttonNumber;
+            // ID OBSAH
+            var content = document.getElementById(contentId);
+            // SKRYTÍ OBSAHU
+            document.querySelectorAll('.content').forEach(function(item) {
+                item.classList.add('hidden');
+            });
+            // ZOBRAZENÍ OBSAHU
+            if (content) {
+                // SKRYTÍ TLAČÍTEK
+                document.querySelector('.buttons-container').classList.add('hidden');
+                // ZOBRAZENÍ OBSAHU
+                content.classList.remove('hidden');
+                // ZOBRAZENÍ TLAČÍTKA ZPĚT OD 1 DO X
+                if (buttonNumber >= 1 && buttonNumber <= 3) {  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
+                    content.innerHTML += '<button onclick="goBack()"><span class="button-number">B</span>Zpět</button>';
+                    // PŘIDÁNÍ OBRÁZKŮ PRO OBSAH - DRUHÝ OBSAH
+                    if (buttonNumber === 1) {
+                        content.innerHTML += '<img src="folder/PV/PV1.jpg" alt="PV Image"><img src="folder/PV/PV2.jpg" alt="PV Image"><img src="folder/PV/PV3.jpg" alt="PV Image"><img src="folder/PV/PV4.jpg" alt="PV Image">';
+                    }
+                    if (buttonNumber === 2) {
+                        content.innerHTML += '<img src="folder/EMGV/EMGV1.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV2.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV3.jpg" alt="EMGV Image"><img src="folder/EMGV/EMGV4.jpg" alt="EMGV Image">';
+                    }
+                    if (buttonNumber === 3) {
+                        content.innerHTML += '<img src="folder/FSFZ/FSFZ1.jpg" alt="FSFZ Image">';
+                    }
+                }
+            }
+        });
+    });
+
+    // SKRYTÍ OBSAHU PO NAČTENÍ STRÁNKY
+    document.querySelectorAll('.content').forEach(function(item) {
+        item.classList.add('hidden');
+    });
 });
 
 var failedAttemptsKey = 'failedAttempts';
 var blockDuration = 600000;
-function checkscript()
-{
-  var scriptInput = document.getElementById('script');
-  var enteredScript = scriptInput.value;
-  var failedAttempts = JSON.parse(localStorage.getItem(failedAttemptsKey)) || {};
-  var ipAddress = '';
 
-  if (!failedAttempts[ipAddress])
-  {
-    failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
-  }
+function checkscript() {
+    var scriptInput = document.getElementById('script');
+    var enteredScript = scriptInput.value;
+    var failedAttempts = JSON.parse(localStorage.getItem(failedAttemptsKey)) || {};
+    var ipAddress = '';
 
-  var currentTime = Date.now();
-  var timeElapsed = currentTime - failedAttempts[ipAddress].lastAttempt;
+    if (!failedAttempts[ipAddress]) {
+        failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
+    }
 
-  if (timeElapsed > blockDuration && failedAttempts[ipAddress].count >= 3)
-  {
-    failedAttempts[ipAddress] = { count: 0, lastAttempt: currentTime };
-  }
+    var currentTime = Date.now();
+    var timeElapsed = currentTime - failedAttempts[ipAddress].lastAttempt;
 
-  if (failedAttempts[ipAddress].count >= 3)
-  {
-    document.getElementById('incorrect-script').innerText = 'Příliš mnoho neúspěšných pokusů. Zkus to později.';
-    document.getElementById('incorrect-script').classList.remove('hidden');
-    scriptInput.disabled = true;
-    document.getElementById('unlock-button').disabled = true;
+    if (timeElapsed > blockDuration && failedAttempts[ipAddress].count >= 3) {
+        failedAttempts[ipAddress] = { count: 0, lastAttempt: currentTime };
+    }
+
+    if (failedAttempts[ipAddress].count >= 3) {
+        document.getElementById('incorrect-script').innerText = 'Příliš mnoho neúspěšných pokusů. Zkus to později.';
+        document.getElementById('incorrect-script').classList.remove('hidden');
+        scriptInput.disabled = true;
+        document.getElementById('unlock-button').disabled = true;
+        localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
+
+        setTimeout(function() {
+            scriptInput.disabled = false;
+            failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
+            document.getElementById('incorrect-script').classList.add('hidden');
+            document.getElementById('unlock-button').disabled = false;
+            localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
+        }, blockDuration);
+
+        return;
+    }
+
+    var storedPassword = ''; // ULOŽENÉ HESLO PRO PŘÍPAD NEFUNKČNOSTI HESLA ZE SKRYTÉHO JSON SOUBORU
+    try {
+        // HESLO ZE SKRYTÉHO JSON SOUBORU
+        var request = new XMLHttpRequest();
+        request.open('GET', 'pass.json', false);
+        request.send(null);
+        if (request.status === 200) {
+            var data = JSON.parse(request.responseText);
+            storedPassword = data.password;
+        }
+    } catch (error) {
+        console.error('Chyba při načítání hesla ze skrytého souboru:', error);
+    }
+
+    if (enteredScript === storedPassword) {
+        document.getElementById('script-form').style.display = 'none';
+        document.getElementById('content').style.display = 'flex';
+        document.getElementById('incorrect-script').classList.add('hidden');
+        failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
+        localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
+    } else {
+        if (failedAttempts[ipAddress].count === 2) {
+            document.getElementById('incorrect-script').innerText = 'Neplatné heslo. Zadávání bylo zablokováno.';
+            scriptInput.disabled = true;
+            document.getElementById('unlock-button').disabled = true;
+        } else {
+            var remainingAttempts = 2 - failedAttempts[ipAddress].count;
+            var attemptsText = remainingAttempts === 1 ? 'pokus' : 'pokusy';
+            var text = remainingAttempts === 1 ? 'Zbývá 1 ' + attemptsText : 'Zbývají ' + remainingAttempts + ' ' + attemptsText;
+            document.getElementById('incorrect-script').innerText = 'Neplatné heslo. ' + text + '.';
+        }
+
+        document.getElementById('incorrect-script').classList.remove('hidden');
+        failedAttempts[ipAddress].count++;
+        failedAttempts[ipAddress].lastAttempt = Date.now();
+        scriptInput.value = '';
+    }
+
     localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
-
-    setTimeout(function ()
-    {
-      scriptInput.disabled = false;
-      failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
-      document.getElementById('incorrect-script').classList.add('hidden');
-      document.getElementById('unlock-button').disabled = false;
-      localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
-    }, blockDuration);
-
-    return;
-  }
-
-  var storedPassword = ''; // ULOŽENÉ HESLO PRO PŘÍPAD NEFUNKČNOSTI HESLA ZE SKRYTÉHO JSON SOUBORU
-  try
-  {
-    // HESLO ZE SKRYTÉHO JSON SOUBORU
-    var request = new XMLHttpRequest();
-    request.open('GET', 'pass.json', false);
-    request.send(null);
-    if (request.status === 200)
-    {
-      var data = JSON.parse(request.responseText);
-      storedPassword = data.password;
-    }
-  }
-  catch (error)
-  {
-    console.error('Chyba při načítání hesla ze skrytého souboru:', error);
-  }
-
-  if (enteredScript === storedPassword)
-  {
-    document.getElementById('script-form').style.display = 'none';
-    document.getElementById('content').style.display = 'flex';
-    document.getElementById('incorrect-script').classList.add('hidden');
-    failedAttempts[ipAddress] = { count: 0, lastAttempt: Date.now() };
-    localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
-  }
-  else
-  {
-    if (failedAttempts[ipAddress].count === 2)
-    {
-      document.getElementById('incorrect-script').innerText = 'Neplatné heslo. Zadávání bylo zablokováno.';
-      scriptInput.disabled = true;
-      document.getElementById('unlock-button').disabled = true;
-    }
-    else
-    {
-      var remainingAttempts = 2 - failedAttempts[ipAddress].count;
-      var attemptsText = remainingAttempts === 1 ? 'pokus' : 'pokusy';
-      var text = remainingAttempts === 1 ? 'Zbývá 1 ' + attemptsText : 'Zbývají ' + remainingAttempts + ' ' + attemptsText;
-      document.getElementById('incorrect-script').innerText = 'Neplatné heslo. ' + text + '.';
-    }
-
-    document.getElementById('incorrect-script').classList.remove('hidden');
-    failedAttempts[ipAddress].count++;
-    failedAttempts[ipAddress].lastAttempt = Date.now();
-    scriptInput.value = '';
-  }
-
-  localStorage.setItem(failedAttemptsKey, JSON.stringify(failedAttempts));
 }
 
 // FUNKCE PRO ZOBRAZENÍ OBSAHU
-function showContent(buttonNumber)
-{
-  // ZÍSKÁNÍ ELEMENTU S ID 'CONTENT'
-  var contentDiv = document.getElementById('content');
-  // OVĚŘENÍ O NALEZENÍ ELEMENTU
-  if (!contentDiv)
-  {
-    console.error("Element s ID 'content' nebyl nalezen.");
-    return;
-  }
-  // SKRYTÍ OBSAHU
-  document.querySelectorAll('.content').forEach(function(item)
-  {
-    item.classList.add('hidden');
-  });
-  // ZOBRAZENÍ OBSAHU
-  contentDiv.classList.remove('hidden');
-  // SKRYTÍ VŠECH TLAČÍTEK
-  var buttonsContainer = document.querySelector('.buttons-container');
-  if (buttonsContainer)
-  {
-    buttonsContainer.classList.add('hidden');
-  }
+function showContent(buttonNumber) {
+    // ZÍSKÁNÍ ELEMENTU S ID 'CONTENT'
+    var contentDiv = document.getElementById('content');
+    // OVĚŘENÍ O NALEZENÍ ELEMENTU
+    if (!contentDiv) {
+        console.error("Element s ID 'content' nebyl nalezen.");
+        return;
+    }
+    // SKRYTÍ OBSAHU
+    document.querySelectorAll('.content').forEach(function(item) {
+        item.classList.add('hidden');
+    });
+    // ZOBRAZENÍ OBSAHU
+    contentDiv.classList.remove('hidden');
+    // SKRYTÍ VŠECH TLAČÍTEK
+    var buttonsContainer = document.querySelector('.buttons-container');
+    if (buttonsContainer) {
+        buttonsContainer.classList.add('hidden');
+    }
+}
     // Zobrazit tlačítko Zpět pro obsah od parametry vedení až x
     if (buttonNumber >= 1 && buttonNumber <= 3)  // UPRAVIT PO PŘIDÁNÍ DALŠÍCHO ZÁPISU!!
     {
